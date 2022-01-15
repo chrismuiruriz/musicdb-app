@@ -1,8 +1,4 @@
-// import useEffect from react
-
 import { useState, useEffect } from "react";
-
-// import useState from react
 
 import {
   BrowserRouter,
@@ -12,6 +8,9 @@ import {
   useParams,
 } from "react-router-dom";
 import "./App.scss";
+
+import Header from "./components/Header";
+import TrackCard from "./components/TrackCard";
 
 function App() {
   return (
@@ -41,8 +40,6 @@ const apiGetter = async (endpoint) => {
 //pages
 
 function Home() {
-  //console.log(apiGetter("chart/0/tracks"));
-
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
@@ -94,36 +91,7 @@ function Home() {
 
   return (
     <>
-      <header className="bg-white shadow-md shadow-zinc-100 py-4">
-        <div className="max-w-screen-xl mx-auto px-4 flex items-stretch">
-          <div>
-            <img
-              src="https://via.placeholder.com/400x200"
-              className="App-logo h-14 md:h-16 w-auto"
-              alt="logo"
-            />
-          </div>
-
-          <div className="flex-1 flex items-stretch md:pl-12">
-            <div className="flex items-center pr-4">
-              <svg
-                className="text-gray-400 h-6 w-6 fill-current"
-                viewBox="0 0 56.966 56.966"
-                width="512px"
-                height="512px"
-              >
-                <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-              </svg>
-            </div>
-
-            <input
-              type="text"
-              placeholder="Search"
-              className="flex-1 outline-none text-xl tracking-wide"
-            />
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main>
         <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
@@ -142,9 +110,6 @@ function Home() {
           </div>
         </div>
       </main>
-
-      {/* <Link to="/artist/123">Artist</Link>
-      <Link to={`/search/${encodeURI("Who is there?")}`}>Artist</Link> */}
     </>
   );
 }
@@ -152,19 +117,49 @@ function Home() {
 function SearchResults() {
   let { q } = useParams();
 
+  const [tracks, setTracks] = useState([]);
+
+  useEffect(() => {
+    apiGetter(`/search?q=${q}`).then((data) => {
+      setTracks(data);
+    });
+  }, [q]);
+
   return (
-    <div>
-      <h2>Search Results for {q}</h2>
-    </div>
+    <>
+      <Header />
+
+      <main>
+        <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
+          <h1 className="mb-8 text-lg border-b-2 pb-2 md:pr-4 inline-block">
+            Showing results for <span className="font-bold">{q}</span>
+          </h1>
+
+          <div className="md:grid grid-cols-4 gap-8">
+            {/* cards here */}
+
+            {/* loop through the tracks */}
+
+            {tracks.map((track) => (
+              <TrackCard track={track} key={track.id} />
+            ))}
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
 
 function Artist() {
   let { id } = useParams();
   return (
-    <div>
-      <h2>Artist {id}</h2>
-    </div>
+    <>
+      <Header />
+
+      <main>
+        <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12"></div>
+      </main>
+    </>
   );
 }
 
