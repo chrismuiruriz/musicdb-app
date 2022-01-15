@@ -34,7 +34,7 @@ const apiGetter = async (endpoint) => {
     },
   });
   const json = await res.json();
-  return json.data;
+  return json;
 };
 
 //pages
@@ -43,8 +43,8 @@ function Home() {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-    apiGetter("chart/0/tracks").then((data) => {
-      setTracks(data);
+    apiGetter("chart/0/tracks").then((json) => {
+      setTracks(json.data);
     });
   }, []);
 
@@ -120,8 +120,8 @@ function SearchResults() {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
-    apiGetter(`/search?q=${q}`).then((data) => {
-      setTracks(data);
+    apiGetter(`/search?q=${q}`).then((json) => {
+      setTracks(json.data);
     });
   }, [q]);
 
@@ -152,12 +152,85 @@ function SearchResults() {
 
 function Artist() {
   let { id } = useParams();
+
+  const [artist, setArtist] = useState({
+    name: "",
+    picture_big: "",
+    nb_album: 0,
+    nb_fan: 0,
+  });
+
+  const [artistTracks, setArtistTracks] = useState([]);
+
+  const [artistAlbums, setArtistAlbums] = useState([]);
+
+  useEffect(() => {
+    apiGetter(`/artist/${id}`).then((json) => {
+      setArtist({ ...artist, ...json });
+    });
+  }, [id]);
+
+  //get the artist tracks
+  useEffect(() => {
+    apiGetter(`/artist/${id}/top`).then((json) => {
+      console.log(json);
+      setArtistTracks(json.data);
+    });
+  }, [id]);
+
+  //get the artist albums
+  useEffect(() => {
+    apiGetter(`/artist/${id}/albums?limit=50`).then((json) => {
+      setArtistAlbums(json.data);
+    });
+  }, [id]);
+
   return (
     <>
       <Header />
 
       <main>
-        <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12"></div>
+        <div className="flex">
+          <div className="mx-auto md:max-w-screen-sm md:h-96 flex flex-col justify-center">
+            <h1 className="font-bold md:text-4xl text-2xl mb-6">
+              {artist.name}
+            </h1>
+            <h4 className="md:text-xl text-md mb-6">
+              <strong>{artist.nb_fan}</strong> Fans
+            </h4>
+
+            <p className="leading-6 text-gray-600">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore.
+            </p>
+          </div>
+
+          <div className="bg-white w-1/3 p-8 md:h-96">
+            <h4 className="md:text-xl text-md mb-6 font-bold">Top Tracks</h4>
+            <div className="">
+              <ul className="bg-white rounded-lg w-96 text-gray-900">
+                {/* show artistTracks */}
+                {artistTracks.map((track, idx) => (
+                  <li className="pl-2 pr-6 py-4 border-b border-gray-200 w-full rounded-t-lg">
+                    <div className="inline-flex">
+                      <span>{idx + 1}</span>{" "}
+                      <span className="inline-block ml-4">{track.title}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white">
+          <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
+            <h1 className="mb-8 text-lg border-b-2 pb-2 md:pr-4 inline-block">
+              Album
+            </h1>
+          </div>
+        </div>
       </main>
     </>
   );
