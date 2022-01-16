@@ -49,16 +49,16 @@ function Artist() {
       <Header />
 
       <main>
-        <div className="md:flex artist-hero md:p-0 p-4">
+        <div className="md:flex artist-hero md:p-0 p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
           <div className="mx-auto md:max-w-screen-sm md:flex flex-col justify-center">
-            <h1 className="font-bold md:text-4xl text-2xl mb-6">
+            <h1 className="font-bold md:text-4xl text-2xl mb-6 text-white">
               {artist.name}
             </h1>
-            <h4 className="md:text-xl text-md mb-6">
+            <h4 className="md:text-xl text-md mb-6 text-white">
               <strong>{artist.nb_fan}</strong> Fans
             </h4>
 
-            <p className="leading-6 text-gray-600">
+            <p className="leading-6 text-gray-300">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae ab illo inventore.
@@ -91,9 +91,9 @@ function Artist() {
           </div>
         </div>
 
-        <div className="bg-white">
+        <div className="bg-gradient-to-t from-blue-100">
           <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
-            <h1 className="mb-8 text-lg border-b-2 pb-2 md:pr-4 inline-block">
+            <h1 className="mb-8 text-xl border-b-2 border-purple-600 pb-2 md:pr-4 md:pl-1 inline-block text-purple-900">
               ALBUMS
             </h1>
 
@@ -103,7 +103,7 @@ function Artist() {
               {artistAlbums.map((album) => (
                 <div
                   key={album.id}
-                  className="rounded-lg shadow-lg bg-white max-w-sm  md:mb-0 mb-4"
+                  className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg shadow-lg bg-white max-w-sm  md:mb-0 mb-4 overflow-hidden"
                 >
                   <div className="relative overflow-hidden">
                     <img
@@ -111,17 +111,17 @@ function Artist() {
                       src="https://e-cdns-images.dzcdn.net/images/cover/330da8bf0a57b47c2078db2d3761dc5e/250x250-000000-80-0-0.jpg"
                       alt=""
                     />
-                    <div className="text-3xl text-gray-600 text-center uppercase absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="cool-text text-3xl text-gray-600 text-center uppercase absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       {album.title}
                     </div>
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between flex-col md:flex-row">
-                      <h3 className="text-gray-900 text-md order-2 md:order-1 font-medium mb-2 md:flex-1">
+                      <h3 className="text-gray-100 text-md order-2 md:order-1 font-medium mb-2 md:flex-1">
                         {album.title}
                       </h3>
                     </div>
-                    <h5 className="text-gray-700 hidden md:inline-block">
+                    <h5 className="text-gray-200 hidden md:inline-block">
                       {extractYear(album.release_date)}
                     </h5>
                   </div>

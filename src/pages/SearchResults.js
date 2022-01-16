@@ -21,9 +21,9 @@ function SearchResults() {
     <>
       <Header />
 
-      <main>
+      <main className="bg-gradient-to-t from-blue-100">
         <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
-          <h1 className="mb-8 text-lg border-b-2 pb-2 md:pr-4 inline-block">
+          <h1 className="mb-8 text-xl border-b-2 border-purple-600 pb-2 md:pr-4 md:pl-1 inline-block text-purple-900">
             Showing results for <span className="font-bold">{q}</span>
           </h1>
 
