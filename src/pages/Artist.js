@@ -21,18 +21,18 @@ function Artist() {
 
   useEffect(() => {
     let isMounted = true;
-    apiGetter(`/artist/${id}`).then((json) => {
+    apiGetter(`artist/${id}`).then((json) => {
       if (isMounted) setArtist({ ...artist, ...json });
     });
     return () => {
       isMounted = false;
     };
-  }, [id, artist]);
+  }, []);
 
   //get the artist tracks
   useEffect(() => {
     let isMounted = true;
-    apiGetter(`/artist/${id}/top`).then((json) => {
+    apiGetter(`artist/${id}/top`).then((json) => {
       if (isMounted) setArtistTracks(json.data);
     });
     return () => {
@@ -43,7 +43,7 @@ function Artist() {
   //get the artist albums
   useEffect(() => {
     let isMounted = true;
-    apiGetter(`/artist/${id}/albums?limit=50`).then((json) => {
+    apiGetter(`artist/${id}/albums`).then((json) => {
       if (isMounted) setArtistAlbums(json.data);
     });
     return () => {
