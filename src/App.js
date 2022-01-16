@@ -12,6 +12,8 @@ import "./App.scss";
 import Header from "./components/Header";
 import TrackCard from "./components/TrackCard";
 
+import apiGetter from "./services/apiGetter";
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,21 +25,6 @@ function App() {
     </BrowserRouter>
   );
 }
-
-// service
-const apiGetter = async (endpoint) => {
-  const apiUrl = `http://localhost:8080/https://api.deezer.com/${endpoint}`;
-  const res = await fetch(apiUrl, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const json = await res.json();
-  return json;
-};
-
-//pages
 
 function Home() {
   const [tracks, setTracks] = useState([]);
@@ -96,7 +83,7 @@ function Home() {
       <main>
         <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
           <h1 className="mb-8 text-lg border-b-2 pb-2 md:pr-4 inline-block">
-            Trending
+            TRENDING
           </h1>
 
           <div className="md:grid grid-cols-4 gap-8">
@@ -233,7 +220,7 @@ function Artist() {
         <div className="bg-white">
           <div className="max-w-screen-xl mx-auto px-4 py-8 md:py-12">
             <h1 className="mb-8 text-lg border-b-2 pb-2 md:pr-4 inline-block">
-              Album
+              ALBUMS
             </h1>
 
             <div className="md:grid grid-cols-4 gap-8">
