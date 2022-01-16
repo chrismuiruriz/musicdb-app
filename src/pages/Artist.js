@@ -28,7 +28,6 @@ function Artist() {
   //get the artist tracks
   useEffect(() => {
     apiGetter(`/artist/${id}/top`).then((json) => {
-      console.log(json);
       setArtistTracks(json.data);
     });
   }, [id]);
@@ -39,6 +38,11 @@ function Artist() {
       setArtistAlbums(json.data);
     });
   }, [id]);
+
+  //a helper func to extract year from the date string
+  const extractYear = (dateString) => {
+    return new Date(dateString).getUTCFullYear();
+  };
 
   return (
     <>
@@ -116,7 +120,7 @@ function Artist() {
                       </h3>
                     </div>
                     <h5 className="text-gray-700 hidden md:inline-block">
-                      {album.release_date}
+                      {extractYear(album.release_date)}
                     </h5>
                   </div>
                 </div>

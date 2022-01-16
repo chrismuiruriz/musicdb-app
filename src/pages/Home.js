@@ -8,8 +8,6 @@ import TrackCard from "../components/TrackCard";
 function Home() {
   const [tracks, setTracks] = useState([]);
 
-  console.log(process.env.REACT_APP_SECRET_PROXY_URL);
-
   useEffect(() => {
     apiGetter("chart/0/tracks").then((json) => {
       setTracks(json.data);
@@ -28,9 +26,6 @@ function Home() {
 
           <div className="md:grid grid-cols-4 gap-8">
             {/* cards here */}
-
-            {/* loop through the tracks */}
-
             {tracks.map((track) => (
               <TrackCard track={track} key={track.id} />
             ))}
