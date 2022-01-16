@@ -6,7 +6,7 @@ function TrackCard({ track }) {
       key={track.id}
       className="rounded-lg shadow-lg bg-white max-w-sm  md:mb-0 mb-4"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <img
           className="rounded-t-lg w-full relative"
           src="https://e-cdns-images.dzcdn.net/images/cover/330da8bf0a57b47c2078db2d3761dc5e/250x250-000000-80-0-0.jpg"

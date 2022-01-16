@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Header() {
   const navigate = useNavigate();
@@ -21,11 +21,13 @@ function Header() {
     <header className="bg-white shadow-md shadow-zinc-100 py-4">
       <div className="max-w-screen-xl mx-auto px-4 flex items-stretch">
         <div>
-          <img
-            src="https://via.placeholder.com/400x200"
-            className="App-logo h-14 md:h-16 w-auto"
-            alt="logo"
-          />
+          <Link to="/" className="hover:opacity-75 transition-opacity inline-block rounded-md overflow-hidden">
+            <img
+              src="https://via.placeholder.com/400x200/020403/cccccc?text={MUSICDB APP}"
+              className="App-logo h-14 md:h-16 w-auto"
+              alt="logo"
+            />
+          </Link>
         </div>
 
         <form
