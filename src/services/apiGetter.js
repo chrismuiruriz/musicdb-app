@@ -1,6 +1,6 @@
 export default async function apiGetter(endpoint) {
   const proxyurl =
-    process.env.REACT_APP_SECRET_PROXY_URL || "http://localhost:8080/";
+    process.env.REACT_APP_SECRET_PROXY_URL || "http://165.22.223.121:5000/";
   const deezerApiUrl =
     process.env.REACT_APP_SECRET_DEEZER_API_URL || "https://api.deezer.com/";
 

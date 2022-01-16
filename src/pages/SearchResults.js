@@ -12,9 +12,15 @@ function SearchResults() {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
+
     apiGetter(`/search?q=${q}`).then((json) => {
-      setTracks(json.data);
+      if (isMounted) setTracks(json.data);
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, [q]);
 
   return (

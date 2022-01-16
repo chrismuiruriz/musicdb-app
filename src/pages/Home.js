@@ -11,9 +11,13 @@ function Home() {
   const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     apiGetter("chart/0/tracks").then((json) => {
-      setTracks(json.data);
+      if (isMounted) setTracks(json.data);
     });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   //style object

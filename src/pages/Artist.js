@@ -20,23 +20,35 @@ function Artist() {
   const [artistAlbums, setArtistAlbums] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     apiGetter(`/artist/${id}`).then((json) => {
-      setArtist({ ...artist, ...json });
+      if (isMounted) setArtist({ ...artist, ...json });
     });
+    return () => {
+      isMounted = false;
+    };
   }, [id, artist]);
 
   //get the artist tracks
   useEffect(() => {
+    let isMounted = true;
     apiGetter(`/artist/${id}/top`).then((json) => {
-      setArtistTracks(json.data);
+      if (isMounted) setArtistTracks(json.data);
     });
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   //get the artist albums
   useEffect(() => {
+    let isMounted = true;
     apiGetter(`/artist/${id}/albums?limit=50`).then((json) => {
-      setArtistAlbums(json.data);
+      if (isMounted) setArtistAlbums(json.data);
     });
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   //a helper func to extract year from the date string
