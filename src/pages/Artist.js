@@ -55,7 +55,7 @@ function Artist() {
               {artist.name}
             </h1>
             <h4 className="md:text-xl text-md mb-6 text-white">
-              <strong>{artist.nb_fan}</strong> Fans
+              <strong>{artist.nb_fan}</strong> fans
             </h4>
 
             <p className="leading-6 text-gray-300">
