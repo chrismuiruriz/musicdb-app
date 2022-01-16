@@ -23,7 +23,7 @@ function Artist() {
     apiGetter(`/artist/${id}`).then((json) => {
       setArtist({ ...artist, ...json });
     });
-  }, [id]);
+  }, [id, artist]);
 
   //get the artist tracks
   useEffect(() => {
