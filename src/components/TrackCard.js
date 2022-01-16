@@ -18,10 +18,10 @@ function TrackCard({ track }) {
       </div>
       <div className="p-6">
         <div className="flex justify-between flex-col md:flex-row">
-          <h3 className="text-gray-900 text-md order-2 md:order-1 font-medium mb-2 md:flex-1">
+          <h3 className="text-gray-900 text-md order-2 md:order-1 font-medium mb-2 mt-2 md:mt-0 md:flex-1">
             {track.title}
           </h3>
-          <p className="text-gray-600 mb:2 md:mb-0 text-sm order-1 md:order-2">
+          <p className="text-gray-600 text-sm order-1 md:order-2">
             {track.duration}
           </p>
         </div>

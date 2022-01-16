@@ -49,8 +49,8 @@ function Artist() {
       <Header />
 
       <main>
-        <div className="flex artist-hero">
-          <div className="mx-auto md:max-w-screen-sm flex flex-col justify-center">
+        <div className="md:flex artist-hero md:p-0 p-4">
+          <div className="mx-auto md:max-w-screen-sm md:flex flex-col justify-center">
             <h1 className="font-bold md:text-4xl text-2xl mb-6">
               {artist.name}
             </h1>
@@ -65,15 +65,17 @@ function Artist() {
             </p>
           </div>
 
-          <div className="bg-white w-1/3 p-8">
-            <h4 className="md:text-xl text-md mb-6 font-bold">Top Tracks</h4>
+          <div className="bg-white md:w-1/3 md:p-8 py-8">
+            <h4 className="md:text-xl text-md mb-4 md:mb-6 font-bold">
+              Top Tracks
+            </h4>
             <div className="">
-              <ul className="bg-white rounded-lg w-96 text-gray-900">
+              <ul className="bg-white rounded-lg md:w-96 text-gray-900">
                 {/* show artistTracks */}
                 {artistTracks.map((track, idx) => (
                   <li
                     key={track.id}
-                    className="pl-2 pr-6 py-4 pt-6 flex justify-between border-b border-gray-200 w-full rounded-t-lg"
+                    className="md:pl-2 pr-6 py-4 pt-6 flex justify-between border-b border-gray-200 w-full rounded-t-lg"
                   >
                     <div className="inline-flex">
                       <span>{idx + 1}</span>{" "}
