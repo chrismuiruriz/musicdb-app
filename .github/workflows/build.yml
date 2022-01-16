@@ -1,0 +1,21 @@
+name: Build App
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build Project Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setting up nodejs
+        uses: actions/setup-node@master
+      - name: Installing project dependencies
+        run: npm install
+      - name: Building the project
+        run: npm run build
