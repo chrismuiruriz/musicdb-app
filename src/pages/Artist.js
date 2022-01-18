@@ -61,8 +61,13 @@ function Artist() {
       <Header />
 
       <main>
-        <div className="md:flex artist-hero md:p-0 p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-          <div className="mx-auto md:max-w-screen-sm md:flex flex-col justify-center">
+        <div
+          style={{
+            backgroundImage: `url(${artist.picture_xl})`,
+          }}
+          className="relative md:flex artist-hero md:p-0 p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+        >
+          <div className="relative z-50 mx-auto md:max-w-screen-sm md:flex flex-col justify-center">
             <h1 className="font-bold md:text-4xl text-2xl mb-6 text-white">
               {artist.name}
             </h1>
@@ -77,7 +82,7 @@ function Artist() {
             </p>
           </div>
 
-          <div className="bg-white md:w-1/3 md:p-8 py-8">
+          <div className="relative z-50 bg-white md:w-1/3 md:p-8 py-8">
             <h4 className="md:text-xl text-md mb-4 md:mb-6 font-bold">
               Top Tracks
             </h4>
