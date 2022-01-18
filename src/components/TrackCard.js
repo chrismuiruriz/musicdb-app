@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function TrackCard({ track }) {
+  console.log(track);
   return (
     <div
       key={track.id}
@@ -9,7 +10,7 @@ function TrackCard({ track }) {
       <div className="relative overflow-hidden">
         <img
           className="rounded-t-lg w-full relative"
-          src="https://e-cdns-images.dzcdn.net/images/cover/330da8bf0a57b47c2078db2d3761dc5e/250x250-000000-80-0-0.jpg"
+          src={track.artist.picture_big}
           alt=""
         />
         <div className="cool-text text-3xl text-gray-600 text-center uppercase absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

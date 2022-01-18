@@ -22,7 +22,7 @@ function Artist() {
   useEffect(() => {
     let isMounted = true;
     apiGetter(`artist/${id}`).then((json) => {
-      if (isMounted) setArtist((a) => ({ ...a, ...json.data }));
+      if (isMounted) setArtist((a) => ({ ...a, ...json }));
     });
     return () => {
       isMounted = false;
@@ -112,6 +112,8 @@ function Artist() {
             <div className="md:grid grid-cols-4 gap-8">
               {/* show artist albums */}
 
+              {/* show No Albums id artist Album is empy */}
+
               {artistAlbums.map((album) => (
                 <div
                   key={album.id}
@@ -120,7 +122,7 @@ function Artist() {
                   <div className="relative overflow-hidden">
                     <img
                       className="rounded-t-lg w-full relative"
-                      src="https://e-cdns-images.dzcdn.net/images/cover/330da8bf0a57b47c2078db2d3761dc5e/250x250-000000-80-0-0.jpg"
+                      src={album.cover_medium}
                       alt=""
                     />
                     <div className="cool-text text-3xl text-gray-600 text-center uppercase absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
